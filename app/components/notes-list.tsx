@@ -4,13 +4,13 @@ import { format } from 'date-fns'
 type Note = Database['public']['Tables']['notes']['Row']
 
 export async function fetchNotes() {
-  // await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 2000))
   const res = await fetch(`${process.env.url}/rest/v1/notes?select=*`, {
     headers: new Headers({
       apikey: process.env.apikey as string,
     }),
-    next: { revalidate: 10 },
-    // cache: 'no-store',
+    // next: { revalidate: 10 },
+    cache: 'no-store',
   })
   if (!res.ok) {
     throw new Error('Faild to fetch data in server')
