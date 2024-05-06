@@ -13,16 +13,13 @@ type PageProps = {
 }
 
 async function fetchBlog(blogId: string) {
-  const res = await fetch(
-    `${process.env.url}/rest/v1/blogs?id=eq.${blogId}&select=*`,
-    {
-      headers: new Headers({
-        apikey: process.env.apikey as string,
-      }),
-      //cache: 'no-store',
-      cache: 'force-cache',
-    }
-  )
+  const res = await fetch(`${process.env.url}/rest/v1/blogs?&select=*`, {
+    headers: new Headers({
+      apikey: process.env.apikey as string,
+    }),
+    //cache: 'no-store',
+    cache: 'force-cache',
+  })
   //   if (!res.ok) {
   //     throw new Error('Failed to fetch data in server')
   //   }
